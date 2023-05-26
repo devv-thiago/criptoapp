@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'components/pages/login_page.dart';
-import 'components/pages/register_page.dart';
+import 'components/screens/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +16,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: RegisterPage(),
+      home: LoginPage(),
     );
   }
 }

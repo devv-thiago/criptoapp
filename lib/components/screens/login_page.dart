@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -89,7 +90,11 @@ class _LoginPageState extends State<LoginPage> {
                 'Não tem uma conta? registre-se',
                 style: TextStyle(color: Colors.purple),
               ),
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) {
+                  return const RegisterPage();
+                },
+              )),
             ),
           ),
         ],

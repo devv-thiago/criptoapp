@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'login_page.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +64,12 @@ class RegisterPage extends StatelessWidget {
               Container(
                   alignment: Alignment.bottomRight,
                   child: TextButton(
-                      onPressed: () {},
+                      onPressed: () =>
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) {
+                              return LoginPage();
+                            },
+                          )),
                       child: const Text('Já tenho uma conta',
                           style: TextStyle(color: Colors.purple))))
             ],
