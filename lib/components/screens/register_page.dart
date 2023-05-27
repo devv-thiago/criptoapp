@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'login_page.dart';
 
-class RegisterPage extends StatelessWidget {
+import '../../utils/app_routes.dart';
+
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
-  
 
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData deviceInfo = MediaQuery.of(context);
@@ -15,35 +20,59 @@ class RegisterPage extends StatelessWidget {
           height: deviceInfo.size.height,
           width: deviceInfo.size.width,
           decoration: const BoxDecoration(
-            color: Color.fromRGBO(183, 181, 228, 1),
+            color: Color.fromRGBO(255, 251, 254, 1),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TextField(
+              TextField(
                 decoration: InputDecoration(
-                    label: Text('Nome'),
-                    border: OutlineInputBorder(),
+                    prefixIcon: const Icon(
+                      Icons.person,
+                      color: Colors.black,
+                    ),
+                    label: const Text('Nome'),
+                    border: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(width: 3, color: Colors.greenAccent),
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
                     filled: true,
                     fillColor: Colors.white),
               ),
               const SizedBox(
                 height: 20,
               ),
-              const TextField(
+              TextField(
                 decoration: InputDecoration(
-                    label: Text('E-mail'),
-                    border: OutlineInputBorder(),
+                    prefixIcon: const Icon(
+                      Icons.email,
+                      color: Colors.black,
+                    ),
+                    label: const Text('E-mail'),
+                    border: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(width: 3, color: Colors.greenAccent),
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
                     filled: true,
                     fillColor: Colors.white),
               ),
               const SizedBox(
                 height: 20,
               ),
-              const TextField(
+              TextField(
                 decoration: InputDecoration(
-                    label: Text('Senha'),
-                    border: OutlineInputBorder(),
+                    prefixIcon: const Icon(
+                      Icons.lock,
+                      color: Colors.black,
+                    ),
+                    label: const Text('Senha'),
+                    border: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(width: 3, color: Colors.greenAccent),
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
                     filled: true,
                     fillColor: Colors.white),
               ),
@@ -55,9 +84,13 @@ class RegisterPage extends StatelessWidget {
                 width: deviceInfo.size.width,
                 child: ElevatedButton(
                   style: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50.0)),
+                      ),
                       backgroundColor: MaterialStateProperty.all(
-                          const Color.fromRGBO(131, 50, 172, 1))),
-                  onPressed: () {},
+                          const Color.fromRGBO(42, 68, 148, 1))),
+                  onPressed: () => Navigator.pushNamed(context, AppRoutes.HOMEPAGE),
                   child: const Text('Registrar-me'),
                 ),
               ),
@@ -65,13 +98,10 @@ class RegisterPage extends StatelessWidget {
                   alignment: Alignment.bottomRight,
                   child: TextButton(
                       onPressed: () =>
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) {
-                              return LoginPage();
-                            },
-                          )),
+                          Navigator.pushNamed(context, AppRoutes.LOGIN_PAGE),
                       child: const Text('Já tenho uma conta',
-                          style: TextStyle(color: Colors.purple))))
+                          style: TextStyle(
+                              color: Color.fromRGBO(42, 68, 148, 1)))))
             ],
           ),
         ),

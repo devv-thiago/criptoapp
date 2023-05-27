@@ -4,7 +4,5 @@ class Coin {
   final String imagePath;
   int preco;
 
-  Coin(this.id,this.name,this.imagePath, this.preco){
-    
-  }
+  Coin(this.id, this.name, this.imagePath, this.preco);
 }

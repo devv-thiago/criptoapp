@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:login/components/screens/homepage.dart';
+import 'package:login/components/screens/register_page.dart';
 import 'components/screens/login_page.dart';
+import '../../utils/app_routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +19,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: LoginPage(),
+      home: const LoginPage(),
+      routes: {
+        AppRoutes.LOGIN_PAGE: (context) => const LoginPage(),
+        AppRoutes.REGISTER_PAGE: (context) => const RegisterPage(),
+        AppRoutes.HOMEPAGE: (context) => const HomePage()
+      },
     );
   }
 }
