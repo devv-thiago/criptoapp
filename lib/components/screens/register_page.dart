@@ -98,7 +98,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   alignment: Alignment.bottomRight,
                   child: TextButton(
                       onPressed: () =>
-                          Navigator.pushNamed(context, AppRoutes.LOGIN_PAGE),
+                          Navigator.pushReplacementNamed(context, AppRoutes.LOGIN_PAGE),
                       child: const Text('Já tenho uma conta',
                           style: TextStyle(
                               color: Color.fromRGBO(42, 68, 148, 1)))))

@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                     backgroundColor: MaterialStateProperty.all(
                         const Color.fromRGBO(42, 68, 148, 1))),
                 onPressed: () =>
-                    Navigator.pushNamed(context, AppRoutes.HOMEPAGE),
+                    Navigator.pushReplacementNamed(context, AppRoutes.HOMEPAGE),
                 child: const Text('Login'),
               ),
             ),
@@ -105,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(color: Color.fromRGBO(42, 68, 148, 1)),
                   ),
                   onPressed: () =>
-                      Navigator.pushNamed(context, AppRoutes.REGISTER_PAGE)),
+                      Navigator.pushReplacementNamed(context, AppRoutes.REGISTER_PAGE)),
             )
           ],
         ),
