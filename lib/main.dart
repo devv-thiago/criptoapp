@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login/components/screens/homepage.dart';
 import 'package:login/components/screens/register_page.dart';
+import 'package:login/components/screens/config_menu.dart';
 import 'components/screens/login_page.dart';
 import '../../utils/app_routes.dart';
 
@@ -23,7 +24,8 @@ class _MyAppState extends State<MyApp> {
       routes: {
         AppRoutes.LOGIN_PAGE: (context) => const LoginPage(),
         AppRoutes.REGISTER_PAGE: (context) => const RegisterPage(),
-        AppRoutes.HOMEPAGE: (context) => const HomePage()
+        AppRoutes.HOMEPAGE: (context) => const HomePage(),
+        AppRoutes.CONFIG_MENU: (context) => const ConfigMenu()
       },
     );
   }

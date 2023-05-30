@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:login/components/widgets/coin_widget.dart';
 import 'package:login/models/coin.dart';
-import '../widgets/drawer_menu.dart';
+import 'package:login/utils/app_routes.dart';
+import 'config_menu.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,18 +29,18 @@ class _HomePageState extends State<HomePage> {
     MediaQueryData deviceInfo = MediaQuery.of(context);
     return MaterialApp(
       home: Scaffold(
-        drawer: const Drawer(
-          child: DrawerMenu()
-        ),
         appBar: AppBar(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(25.0),
-              bottomRight: Radius.circular(25.0),
+          backgroundColor: const Color.fromRGBO(235, 235, 235, 1),
+          elevation: 0,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.settings,
+              color: Colors.black,
             ),
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutes.CONFIG_MENU);
+            },
           ),
-          backgroundColor: const Color.fromRGBO(42, 68, 148, 1),
-          title: const Center(child: Text('Cripto App')),
         ),
         backgroundColor: const Color.fromRGBO(235, 235, 235, 1),
         body: SizedBox(
