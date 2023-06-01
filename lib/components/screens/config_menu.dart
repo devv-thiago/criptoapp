@@ -13,40 +13,78 @@ class ConfigMenu extends StatelessWidget {
           height: deviceInfo.size.height,
           width: deviceInfo.size.width,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const Column(
-                children: [
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundColor: Colors.amber,
-                  ),
-                  Text('Thiago Fofano')
-                ],
+              SizedBox(
+                height: deviceInfo.size.height * 0.3,
+                width: deviceInfo.size.width,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CircleAvatar(
+                      radius: 50,
+                      backgroundColor: Colors.amber,
+                    ),
+                    SizedBox(
+                      height: deviceInfo.size.height * 0.02,
+                    ),
+                    const Text('Thiago Fofano')
+                  ],
+                ),
               ),
               SizedBox(
-                height: deviceInfo.size.height * 0.05,
-              ),
-              Container(
-                  height: deviceInfo.size.height * 0.08,
-                  width: deviceInfo.size.width,
-                  decoration: const BoxDecoration(color: Colors.red),
-                  child: ListTile(
-                    leading: const Icon(Icons.person),
-                    title: InkWell(
-                      child: const Text('Minhas configuracoes'),
-                      onTap: () => print('clicou'),
+                height: deviceInfo.size.height * 0.7,
+                width: deviceInfo.size.width,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                            margin: EdgeInsets.only(
+                                right: deviceInfo.size.width * 0.05),
+                            child: const Icon(Icons.settings)),
+                        InkWell(
+                            child: const Text('Meu perfil'),
+                            onTap: () => print('clicou')),
+                      ],
                     ),
-                  )),
-              Container(
-                height: deviceInfo.size.height * 0.08,
-                width: deviceInfo.size.width,
-                decoration: const BoxDecoration(color: Colors.yellow),
-              ),
-              Container(
-                height: deviceInfo.size.height * 0.08,
-                width: deviceInfo.size.width,
-                decoration: const BoxDecoration(color: Colors.blue),
+                    SizedBox(
+                      height: deviceInfo.size.height * 0.03,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                            margin: EdgeInsets.only(
+                                right: deviceInfo.size.width * 0.05),
+                            child: const Icon(Icons.settings)),
+                        InkWell(
+                            child: const Text('Meu perfil'),
+                            onTap: () => print('clicou')),
+                      ],
+                    ),
+                    SizedBox(
+                      height: deviceInfo.size.height * 0.03,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                            margin: EdgeInsets.only(
+                                right: deviceInfo.size.width * 0.05),
+                            child: const Icon(Icons.settings)),
+                        InkWell(
+                            child: const Text('Meu perfil'),
+                            onTap: () => print('clicou')),
+                      ],
+                    )
+                  ],
+                ),
               )
             ],
           ),
