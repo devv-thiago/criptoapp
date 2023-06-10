@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 
-class CoinWidget extends StatelessWidget {
+// ignore: must_be_immutable
+class CoinWidget extends StatefulWidget {
   String name;
-
   String id;
 
   String percent;
 
   String price;
 
-  CoinWidget(this.name, this.id, this.percent, this.price);
+  CoinWidget(this.name, this.id, this.percent, this.price, {super.key});
 
+  @override
+  State<CoinWidget> createState() => _CoinWidgetState();
+}
+
+class _CoinWidgetState extends State<CoinWidget> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData deviceinfo = MediaQuery.of(context);
@@ -42,18 +47,18 @@ class CoinWidget extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(name),
-                  Text(id),
+                  Text(widget.name),
+                  Text(widget.id),
                 ],
               ),
               SizedBox(
                 width: deviceinfo.size.width * 0.1,
               ),
-              Text(percent),
+              Text(widget.percent),
               SizedBox(
                 width: deviceinfo.size.width * 0.05,
               ),
-              Text(price),
+              Text(widget.price),
             ],
           ),
         ),

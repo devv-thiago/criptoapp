@@ -70,8 +70,8 @@ class _LoginPageState extends State<LoginPage> {
                       });
                     },
                     icon: isObscure == true
-                        ? const Icon(Icons.lock)
-                        : const Icon(Icons.no_encryption)),
+                        ? const Icon(Icons.visibility)
+                        : const Icon(Icons.visibility_off)),
               ),
             ),
             const SizedBox(
@@ -104,8 +104,8 @@ class _LoginPageState extends State<LoginPage> {
                     'Não tem uma conta? registre-se',
                     style: TextStyle(color: Color.fromRGBO(42, 68, 148, 1)),
                   ),
-                  onPressed: () =>
-                      Navigator.pushReplacementNamed(context, AppRoutes.REGISTER_PAGE)),
+                  onPressed: () => Navigator.pushReplacementNamed(
+                      context, AppRoutes.REGISTER_PAGE)),
             )
           ],
         ),
