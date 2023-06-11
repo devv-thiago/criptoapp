@@ -20,7 +20,6 @@ class _CoinWidgetState extends State<CoinWidget> {
   Widget build(BuildContext context) {
     MediaQueryData deviceinfo = MediaQuery.of(context);
     return Container(
-      padding: const EdgeInsets.only(right: 10, left: 10),
       height: deviceinfo.size.height * 0.1,
       width: deviceinfo.size.width,
       child: Card(
