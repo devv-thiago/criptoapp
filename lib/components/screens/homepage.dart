@@ -3,21 +3,21 @@ import 'package:login/components/screens/coins_page.dart';
 import 'package:login/components/screens/config_menu.dart';
 import 'package:login/components/screens/news_page.dart';
 
-import 'package:flutter/material.dart';
-
 class HomePage extends StatefulWidget {
+  // ignore: use_key_in_widget_constructors
   const HomePage({Key? key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List<Widget> navigatorPages = [
-    CoinsPage(),
-    NewsPage(),
-    ConfigMenu(),
+    const CoinsPage(),
+    const NewsPage(),
+    const ConfigMenu(),
   ];
 
   void _onItemTapped(int index) {
@@ -28,7 +28,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    MediaQueryData deviceInfo = MediaQuery.of(context);
     return MaterialApp(
       home: Scaffold(
         backgroundColor: const Color.fromRGBO(235, 235, 235, 1),
