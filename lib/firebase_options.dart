@@ -57,6 +57,7 @@ class DefaultFirebaseOptions {
     appId: '1:981174317357:android:7028f4d53961e1a16623a4',
     messagingSenderId: '981174317357',
     projectId: 'criptoapp-1bab3',
+    databaseURL: 'https://criptoapp-1bab3-default-rtdb.firebaseio.com',
     storageBucket: 'criptoapp-1bab3.appspot.com',
   );
 }
