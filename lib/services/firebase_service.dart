@@ -1,22 +1,20 @@
-
 import 'package:firebase_database/firebase_database.dart';
 
 class FirebaseService {
-  DatabaseReference ref = FirebaseDatabase.instance.ref();
+  FirebaseDatabase database =
+      FirebaseDatabase.instance; // instancia padrao do banco de dados
+  DatabaseReference ref = FirebaseDatabase.instance
+      .ref('/users'); // instância de DatabaseReference(necessario)
 
-  FirebaseService();
-
-  insertData(String name, String email, String senha) async {
-    try {
-      await ref.set({
-        name: {
-          'email': email,
-          'senha': senha,
-        }
-      });
-      print('Registro inserido');
-    } catch (e) {
-      Exception('Erro: $e');
-    }
+  Future<void> insertData(
+      {required String nome,
+      required String email,
+      required String senha}) async {
+    await ref.set({
+      nome: {
+        "email": email,
+        "senha": senha,
+      }
+    });
   }
 }

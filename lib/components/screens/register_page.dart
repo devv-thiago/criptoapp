@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../services/firebase_service.dart';
 import '../../utils/app_routes.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -10,6 +11,10 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController senhaController = TextEditingController();
+  TextEditingController nomeController = TextEditingController();
+  FirebaseService firebaseService = FirebaseService();
   @override
   Widget build(BuildContext context) {
     MediaQueryData deviceInfo = MediaQuery.of(context);
@@ -26,6 +31,7 @@ class _RegisterPageState extends State<RegisterPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextField(
+                controller: nomeController,
                 decoration: InputDecoration(
                     prefixIcon: const Icon(
                       Icons.person,
@@ -44,6 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 20,
               ),
               TextField(
+                controller: emailController,
                 decoration: InputDecoration(
                     prefixIcon: const Icon(
                       Icons.email,
@@ -62,6 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 20,
               ),
               TextField(
+                controller: senhaController,
                 decoration: InputDecoration(
                     prefixIcon: const Icon(
                       Icons.lock,
@@ -90,15 +98,21 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       backgroundColor: MaterialStateProperty.all(
                           const Color.fromRGBO(42, 68, 148, 1))),
-                  onPressed: () => Navigator.pushNamed(context, AppRoutes.HOMEPAGE),
+                  onPressed: () {
+                    firebaseService.insertData(
+                        email: emailController.text,
+                        senha: senhaController.text,
+                        nome: nomeController.text);
+                    //Navigator.pushNamed(context, AppRoutes.HOMEPAGE);
+                  },
                   child: const Text('Registrar-me'),
                 ),
               ),
               Container(
                   alignment: Alignment.bottomRight,
                   child: TextButton(
-                      onPressed: () =>
-                          Navigator.pushReplacementNamed(context, AppRoutes.LOGIN_PAGE),
+                      onPressed: () => Navigator.pushReplacementNamed(
+                          context, AppRoutes.LOGIN_PAGE),
                       child: const Text('Já tenho uma conta',
                           style: TextStyle(
                               color: Color.fromRGBO(42, 68, 148, 1)))))
