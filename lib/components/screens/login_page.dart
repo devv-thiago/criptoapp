@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:login/utils/app_routes.dart';
 
+import '../../services/firebase_service.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -12,6 +14,7 @@ class _LoginPageState extends State<LoginPage> {
   bool isObscure = true;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  FirebaseService firebaseService = FirebaseService();
 
   @override
   Widget build(BuildContext context) {
@@ -87,8 +90,9 @@ class _LoginPageState extends State<LoginPage> {
                     )),
                     backgroundColor: MaterialStateProperty.all(
                         const Color.fromRGBO(42, 68, 148, 1))),
-                onPressed: () =>
-                    Navigator.pushReplacementNamed(context, AppRoutes.HOMEPAGE),
+                onPressed: () {
+                  firebaseService.getData();
+                },
                 child: const Text('Login'),
               ),
             ),

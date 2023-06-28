@@ -103,8 +103,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         email: emailController.text,
                         senha: senhaController.text,
                         nome: nomeController.text);
-                    //Navigator.pushNamed(context, AppRoutes.HOMEPAGE);
-                  },
+
+                      Navigator.pushReplacementNamed(
+                          context, AppRoutes.LOGIN_PAGE);
+                    },
                   child: const Text('Registrar-me'),
                 ),
               ),
