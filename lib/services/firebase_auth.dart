@@ -1,3 +1,3 @@
 class FirebaseAuth {
-  
+  var a;
 }
