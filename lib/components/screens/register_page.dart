@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../services/firebase_service.dart';
+import '../../services/firebase_auth.dart';
 import '../../utils/app_routes.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -14,7 +14,8 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController senhaController = TextEditingController();
   TextEditingController nomeController = TextEditingController();
-  FirebaseService firebaseService = FirebaseService();
+
+  FirebaseAuth auth = FirebaseAuth();
   @override
   Widget build(BuildContext context) {
     MediaQueryData deviceInfo = MediaQuery.of(context);
@@ -99,14 +100,12 @@ class _RegisterPageState extends State<RegisterPage> {
                       backgroundColor: MaterialStateProperty.all(
                           const Color.fromRGBO(42, 68, 148, 1))),
                   onPressed: () {
-                    firebaseService.insertData(
+                    auth.registerUser(
                         email: emailController.text,
-                        senha: senhaController.text,
-                        nome: nomeController.text);
-
-                      Navigator.pushReplacementNamed(
-                          context, AppRoutes.LOGIN_PAGE);
-                    },
+                        password: senhaController.text);
+                    Navigator.pushReplacementNamed(
+                        context, AppRoutes.LOGIN_PAGE);
+                  },
                   child: const Text('Registrar-me'),
                 ),
               ),

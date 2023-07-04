@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login/utils/app_routes.dart';
 
-import '../../services/firebase_service.dart';
+import '../../services/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,8 +13,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool isObscure = true;
   TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  FirebaseService firebaseService = FirebaseService();
+  TextEditingController senhaController = TextEditingController();
+  FirebaseAuth auth = FirebaseAuth();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 20),
             TextField(
-              controller: passwordController,
+              controller: senhaController,
               obscureText: isObscure,
               decoration: InputDecoration(
                 filled: true,
@@ -91,7 +91,9 @@ class _LoginPageState extends State<LoginPage> {
                     backgroundColor: MaterialStateProperty.all(
                         const Color.fromRGBO(42, 68, 148, 1))),
                 onPressed: () {
-                  firebaseService.getData();
+                    auth.loginUser(
+                        email: emailController.text,
+                        password: senhaController.text);
                 },
                 child: const Text('Login'),
               ),
