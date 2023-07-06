@@ -16,6 +16,37 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController nomeController = TextEditingController();
 
   FirebaseAuth auth = FirebaseAuth();
+  bool _validated = false;
+  goToLoginPage() {
+    Navigator.pushReplacementNamed(context, AppRoutes.LOGIN_PAGE);
+  }
+
+  showAlertDialog() {
+    // set up the button
+    Widget okButton = TextButton(
+      child: const Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      content: const Text("Usuário existente"),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData deviceInfo = MediaQuery.of(context);
@@ -51,6 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 20,
               ),
               TextField(
+                keyboardType: TextInputType.emailAddress,
                 controller: emailController,
                 decoration: InputDecoration(
                     prefixIcon: const Icon(
@@ -89,25 +121,42 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 20,
               ),
               SizedBox(
-                height: 50,
-                width: deviceInfo.size.width,
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50.0)),
-                      ),
-                      backgroundColor: MaterialStateProperty.all(
-                          const Color.fromRGBO(42, 68, 148, 1))),
-                  onPressed: () {
-                    auth.registerUser(
-                        email: emailController.text,
-                        password: senhaController.text);
-                    Navigator.pushReplacementNamed(
-                        context, AppRoutes.LOGIN_PAGE);
-                  },
-                  child: const Text('Registrar-me'),
-                ),
+                height:
+                    (_validated == false) ? 50 : deviceInfo.size.height * 0.05,
+                width: (_validated == false)
+                    ? deviceInfo.size.width
+                    : deviceInfo.size.width * 0.1,
+                child: (_validated == false)
+                    ? ElevatedButton(
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50.0)),
+                            ),
+                            backgroundColor: MaterialStateProperty.all(
+                                const Color.fromRGBO(42, 68, 148, 1))),
+                        onPressed: () async {
+                          setState(() {
+                            _validated = true;
+                          });
+                          var result = await auth.validateData(
+                              email: emailController.text,
+                              password: senhaController.text);
+                          if (result == 'usuário habilitado') {
+                            await auth.registerUser(
+                                email: emailController.text,
+                                password: senhaController.text);
+                            goToLoginPage();
+                          } else {
+                            setState(() {
+                              _validated = false;
+                            });
+                            showAlertDialog();
+                          }
+                        },
+                        child: const Text('Registrar-me'),
+                      )
+                    : const CircularProgressIndicator(),
               ),
               Container(
                   alignment: Alignment.bottomRight,
