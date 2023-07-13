@@ -1,12 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:login/components/screens/config_menu.dart';
-import 'package:login/components/screens/homepage.dart';
-import 'package:login/components/screens/register_page.dart';
+import 'package:login/components/pages/homepage.dart';
+import 'package:login/components/pages/register_page.dart';
 
 import '../../utils/app_routes.dart';
-import 'components/screens/login_page.dart';
+import 'components/pages/login_page.dart';
 import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +30,6 @@ class _MyAppState extends State<MyApp> {
         AppRoutes.LOGIN_PAGE: (context) => const LoginPage(),
         AppRoutes.REGISTER_PAGE: (context) => const RegisterPage(),
         AppRoutes.HOMEPAGE: (context) => const HomePage(),
-        AppRoutes.CONFIG_MENU: (context) => const ConfigMenu()
       },
     );
   }

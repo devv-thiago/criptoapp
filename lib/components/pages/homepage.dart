@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login/components/screens/coins_page.dart';
-import 'package:login/components/screens/config_menu.dart';
-import 'package:login/components/screens/news_page.dart';
+import 'package:login/components/pages/coins_page.dart';
+import 'package:login/components/pages/news_page.dart';
 
 class HomePage extends StatefulWidget {
   // ignore: use_key_in_widget_constructors
@@ -17,7 +16,6 @@ class _HomePageState extends State<HomePage> {
   List<Widget> navigatorPages = [
     const CoinsPage(),
     const NewsPage(),
-    const ConfigMenu(),
   ];
 
   void _onItemTapped(int index) {
@@ -54,13 +52,6 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.white,
                 ),
                 label: 'News',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.person,
-                  color: Colors.white,
-                ),
-                label: 'My account',
               ),
             ],
             onTap: _onItemTapped,

@@ -9,7 +9,7 @@ class FirebaseAuth {
       {required String email, required String password}) async {
     var url =
         'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=$apiKey';
-    final response = await post(
+    await post(
       Uri.parse(url),
       body: jsonEncode(
           {'email': email, 'password': password, 'returnSecureToken': true}),
