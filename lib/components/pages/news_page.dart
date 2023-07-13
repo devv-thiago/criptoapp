@@ -8,8 +8,16 @@ class NewsPage extends StatelessWidget {
     MediaQueryData deviceInfo = MediaQuery.of(context);
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: deviceInfo.size.height * 0.13,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20))),
         backgroundColor: const Color.fromRGBO(42, 68, 148, 1),
-        title: const Text('News'),
+        title: const Text(
+          'News',
+          style: TextStyle(fontSize: 35),
+        ),
       ),
       body: SizedBox(
         height: deviceInfo.size.height,
