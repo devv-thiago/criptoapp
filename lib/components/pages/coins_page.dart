@@ -15,10 +15,7 @@ class _CoinsPageState extends State<CoinsPage> {
   @override
   Widget build(BuildContext context) {
     List<Widget> coins = [
-      CoinWidget('Ethereum', 'ETH', '-10%', 'R\$20.000'),
-      CoinWidget('Bitcoin', 'BTC', '-10%', 'R\$120.000'),
-      CoinWidget('Ether', 'ET', '+10%', 'R\$15.000'),
-      CoinWidget('Ethereum', 'ETH', '-10%', 'R\$20.000'),
+
     ];
     MediaQueryData deviceInfo = MediaQuery.of(context);
     return MaterialApp(
