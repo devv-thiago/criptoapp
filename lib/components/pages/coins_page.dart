@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../widgets/coin_widget.dart';
+import 'package:login/components/widgets/coin_widget.dart'; // Importe o seu CoinWidget aqui
+import 'package:login/services/coin_provider.dart';
 
 class CoinsPage extends StatefulWidget {
   const CoinsPage({super.key});
@@ -12,86 +12,119 @@ class CoinsPage extends StatefulWidget {
 class _CoinsPageState extends State<CoinsPage> {
   bool allClicked = false;
   bool favoriteClicked = false;
+  CoinProvider coinProvider = CoinProvider();
+  List<Widget> coins = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCoins(); // Chama a função para carregar os dados das criptomoedas
+  }
+
+  Future<void> _loadCoins() async {
+    try {
+      await coinProvider.getCoinInformation(
+          'https://api.coingecko.com/api/v3/coins/list?include_platform=true');
+      setState(() {
+        // Cria os widgets do CoinWidget para cada moeda carregada
+        coins = coinProvider.cryptocurrencies.map((coin) {
+          return CoinWidget(
+            // Use o seu CoinWidget aqui
+            coin.id,
+            coin.symbol,
+            coin.name,
+            coin.platforms,
+          );
+        }).toList();
+      });
+    } catch (error) {
+      // Lida com possíveis erros na chamada da API
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Widget> coins = [
-
-    ];
     MediaQueryData deviceInfo = MediaQuery.of(context);
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color.fromRGBO(42, 68, 148, 1),
-          toolbarHeight: deviceInfo.size.height * 0.13,
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20))),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(42, 68, 148, 1),
+        toolbarHeight: deviceInfo.size.height * 0.13,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+          ),
         ),
-        body: Padding(
-          padding: EdgeInsets.only(
-              top: deviceInfo.size.height * 0.05,
-              right: deviceInfo.size.height * 0.01,
-              left: deviceInfo.size.height * 0.01),
-          child: SizedBox(
-            height: deviceInfo.size.height,
-            width: deviceInfo.size.width,
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    ActionChip(
-                      onPressed: () {
-                        setState(() {
-                          allClicked = !allClicked;
-                        });
-                      },
-                      disabledColor: Colors.transparent,
-                      label: Text(
-                        'All',
-                        style: TextStyle(
-                            color: (allClicked == false)
-                                ? Colors.black
-                                : Colors.white),
-                      ),
-                      backgroundColor: (allClicked == false)
-                          ? Colors.transparent
-                          : const Color.fromRGBO(42, 68, 148, 1),
-                      side: const BorderSide(
-                          color: Color.fromRGBO(42, 68, 148, 1), width: 2),
-                    ),
-                    ActionChip(
-                      onPressed: () {
-                        setState(() {
-                          favoriteClicked = !favoriteClicked;
-                        });
-                      },
-                      disabledColor: Colors.transparent,
-                      backgroundColor: (favoriteClicked == false)
-                          ? Colors.transparent
-                          : const Color.fromRGBO(42, 68, 148, 1),
-                      label: Text(
-                        'Favorites',
-                        style: TextStyle(
-                            color: (favoriteClicked == false)
-                                ? Colors.black
-                                : Colors.white),
-                      ),
-                      side: const BorderSide(
-                          color: Color.fromRGBO(42, 68, 148, 1), width: 2),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    itemBuilder: (context, index) {
-                      return coins[index];
+      ),
+      body: Padding(
+        padding: EdgeInsets.only(
+          top: deviceInfo.size.height * 0.05,
+          right: deviceInfo.size.height * 0.01,
+          left: deviceInfo.size.height * 0.01,
+        ),
+        child: SizedBox(
+          height: deviceInfo.size.height,
+          width: deviceInfo.size.width,
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  ActionChip(
+                    onPressed: () async {
+                      setState(() {
+                        allClicked = !allClicked;
+                      });
                     },
-                    itemCount: coins.length,
+                    disabledColor: Colors.transparent,
+                    label: Text(
+                      'All',
+                      style: TextStyle(
+                        color:
+                            (allClicked == false) ? Colors.black : Colors.white,
+                      ),
+                    ),
+                    backgroundColor: (allClicked == false)
+                        ? Colors.transparent
+                        : const Color.fromRGBO(42, 68, 148, 1),
+                    side: const BorderSide(
+                      color: Color.fromRGBO(42, 68, 148, 1),
+                      width: 2,
+                    ),
                   ),
+                  ActionChip(
+                    onPressed: () {
+                      setState(() {
+                        favoriteClicked = !favoriteClicked;
+                      });
+                    },
+                    disabledColor: Colors.transparent,
+                    backgroundColor: (favoriteClicked == false)
+                        ? Colors.transparent
+                        : const Color.fromRGBO(42, 68, 148, 1),
+                    label: Text(
+                      'Favorites',
+                      style: TextStyle(
+                        color: (favoriteClicked == false)
+                            ? Colors.black
+                            : Colors.white,
+                      ),
+                    ),
+                    side: const BorderSide(
+                      color: Color.fromRGBO(42, 68, 148, 1),
+                      width: 2,
+                    ),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    return coins[index]; // Exibe o CoinWidget correspondente
+                  },
+                  itemCount: coins.length,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

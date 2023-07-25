@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CoinWidget extends StatefulWidget {
-  String name;
-  String id;
+  final String id;
+  final String symbol;
+  final String name;
+  final Map<String, dynamic> platforms;
 
-  String percent;
-
-  String price;
-
-  CoinWidget(this.name, this.id, this.percent, this.price, {super.key});
+  const CoinWidget(this.id, this.symbol, this.name, this.platforms,
+      {super.key});
 
   @override
   State<CoinWidget> createState() => _CoinWidgetState();
@@ -19,7 +18,7 @@ class _CoinWidgetState extends State<CoinWidget> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData deviceinfo = MediaQuery.of(context);
-    return Container(
+    return SizedBox(
       height: deviceinfo.size.height * 0.1,
       width: deviceinfo.size.width,
       child: Card(
@@ -41,23 +40,14 @@ class _CoinWidgetState extends State<CoinWidget> {
                 ),
               ),
               SizedBox(
-                width: deviceinfo.size.width * 0.05,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(widget.name),
-                  Text(widget.id),
-                ],
-              ),
+                  width: deviceinfo.size.width * 0.2, child: Text(widget.id)),
               SizedBox(
-                width: deviceinfo.size.width * 0.1,
-              ),
-              Text(widget.percent),
+                  width: deviceinfo.size.width * 0.2,
+                  child: Text(widget.symbol)),
               SizedBox(
-                width: deviceinfo.size.width * 0.05,
-              ),
-              Text(widget.price),
+                  width: deviceinfo.size.width * 0.2,
+                  height: deviceinfo.size.height,
+                  child: Text(widget.name)),
             ],
           ),
         ),
