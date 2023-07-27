@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:login/model/coin_model.dart';
 
 interface class CoinProvider {
-
   List<CoinModel> cryptocurrencies = [];
 
   Future getCoinInformation(String url) async {

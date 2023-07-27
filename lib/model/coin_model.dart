@@ -1,15 +1,16 @@
-
 class CoinModel {
   final String id;
   final String symbol;
   final String name;
-  final Map<String, dynamic> platforms;
+  final String imageUrl;
+  final String currentPrice;
 
   CoinModel({
     required this.id,
     required this.symbol,
     required this.name,
-    required this.platforms,
+    required this.imageUrl,
+    required this.currentPrice
   });
 
   factory CoinModel.fromJson(Map<String, dynamic> json) {
@@ -17,8 +18,8 @@ class CoinModel {
       id: json['id'],
       symbol: json['symbol'],
       name: json['name'],
-      platforms: Map<String, dynamic>.from(json['platforms']),
+      imageUrl: json['image'],
+      currentPrice: json['current_price']
     );
   }
 }
- 

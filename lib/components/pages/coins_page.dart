@@ -24,17 +24,17 @@ class _CoinsPageState extends State<CoinsPage> {
   Future<void> _loadCoins() async {
     try {
       await coinProvider.getCoinInformation(
-          'https://api.coingecko.com/api/v3/coins/list?include_platform=true');
+          'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=10&sparkline=false&locale=en&precision=2');
       setState(() {
         // Cria os widgets do CoinWidget para cada moeda carregada
         coins = coinProvider.cryptocurrencies.map((coin) {
           return CoinWidget(
-            // Use o seu CoinWidget aqui
-            coin.id,
-            coin.symbol,
-            coin.name,
-            coin.platforms,
-          );
+              // Use o seu CoinWidget aqui
+              coin.id,
+              coin.symbol,
+              coin.name,
+              coin.imageUrl,
+              coin.currentPrice);
         }).toList();
       });
     } catch (error) {
@@ -116,14 +116,20 @@ class _CoinsPageState extends State<CoinsPage> {
                   ),
                 ],
               ),
-              Expanded(
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return coins[index]; // Exibe o CoinWidget correspondente
-                  },
-                  itemCount: coins.length,
-                ),
-              ),
+              (coins.isEmpty)
+                  ? Container(
+                      height: deviceInfo.size.height * 0.3,
+                      alignment: Alignment.center,
+                      child: const CircularProgressIndicator())
+                  : Expanded(
+                      child: ListView.builder(
+                        itemBuilder: (context, index) {
+                          return coins[
+                              index]; // Exibe o CoinWidget correspondente
+                        },
+                        itemCount: coins.length,
+                      ),
+                    ),
             ],
           ),
         ),

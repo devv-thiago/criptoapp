@@ -5,10 +5,13 @@ class CoinWidget extends StatefulWidget {
   final String id;
   final String symbol;
   final String name;
-  final Map<String, dynamic> platforms;
+  final String imageUrl;
+  final String currentPrice;
 
-  const CoinWidget(this.id, this.symbol, this.name, this.platforms,
-      {super.key});
+  const CoinWidget(
+      this.id, this.symbol, this.name, this.imageUrl, this.currentPrice,
+      {Key? key})
+      : super(key: key);
 
   @override
   State<CoinWidget> createState() => _CoinWidgetState();
@@ -35,19 +38,18 @@ class _CoinWidgetState extends State<CoinWidget> {
               SizedBox(
                 height: deviceinfo.size.height * 0.15,
                 width: deviceinfo.size.width * 0.15,
-                child: const CircleAvatar(
+                child: CircleAvatar(
                   backgroundColor: Colors.red,
+                  child: Image.network(
+                    widget.imageUrl,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
-              SizedBox(
-                  width: deviceinfo.size.width * 0.2, child: Text(widget.id)),
-              SizedBox(
-                  width: deviceinfo.size.width * 0.2,
-                  child: Text(widget.symbol)),
-              SizedBox(
-                  width: deviceinfo.size.width * 0.2,
-                  height: deviceinfo.size.height,
-                  child: Text(widget.name)),
+              Expanded(child: Text(widget.id)),
+              Expanded(child: Text(widget.symbol)),
+              Expanded(child: Text(widget.name)),
+              Expanded(child: Text(widget.currentPrice)),
             ],
           ),
         ),
