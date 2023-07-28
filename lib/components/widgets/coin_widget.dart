@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
 class CoinWidget extends StatefulWidget {
-  final String id;
   final String symbol;
   final String name;
   final String imageUrl;
-  final String currentPrice;
+  final double currentPrice;
 
-  const CoinWidget(
-      this.id, this.symbol, this.name, this.imageUrl, this.currentPrice,
+  const CoinWidget(this.symbol, this.name, this.imageUrl, this.currentPrice,
       {Key? key})
       : super(key: key);
 
@@ -21,6 +20,7 @@ class _CoinWidgetState extends State<CoinWidget> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData deviceinfo = MediaQuery.of(context);
+    var formatter = NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$');
     return SizedBox(
       height: deviceinfo.size.height * 0.1,
       width: deviceinfo.size.width,
@@ -35,21 +35,44 @@ class _CoinWidgetState extends State<CoinWidget> {
           padding: const EdgeInsets.all(5),
           child: Row(
             children: [
-              SizedBox(
-                height: deviceinfo.size.height * 0.15,
-                width: deviceinfo.size.width * 0.15,
+              Container(
+                margin: EdgeInsets.only(
+                    right: deviceinfo.size.width * 0.05,
+                    left: deviceinfo.size.width * 0.02),
+                height: deviceinfo.size.height * 0.13,
+                width: deviceinfo.size.width * 0.13,
                 child: CircleAvatar(
-                  backgroundColor: Colors.red,
+                  backgroundColor: const Color.fromRGBO(188, 231, 253, 1),
                   child: Image.network(
                     widget.imageUrl,
-                    fit: BoxFit.contain,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
-              Expanded(child: Text(widget.id)),
-              Expanded(child: Text(widget.symbol)),
-              Expanded(child: Text(widget.name)),
-              Expanded(child: Text(widget.currentPrice)),
+              Expanded(
+                flex: 1,
+                child: Text(
+                  widget.name,
+                  softWrap: true,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Text(
+                  widget.symbol.toUpperCase(),
+                  style: const TextStyle(
+                    color: Color.fromARGB(255, 71, 71, 71),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Text(formatter.format(widget.currentPrice).toString()),
+              ),
             ],
           ),
         ),

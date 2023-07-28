@@ -24,21 +24,19 @@ class _CoinsPageState extends State<CoinsPage> {
   Future<void> _loadCoins() async {
     try {
       await coinProvider.getCoinInformation(
-          'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=10&sparkline=false&locale=en&precision=2');
+          'https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&order=market_cap_desc&sparkline=false&locale=en&precision=2');
       setState(() {
-        // Cria os widgets do CoinWidget para cada moeda carregada
         coins = coinProvider.cryptocurrencies.map((coin) {
           return CoinWidget(
-              // Use o seu CoinWidget aqui
-              coin.id,
-              coin.symbol,
-              coin.name,
-              coin.imageUrl,
-              coin.currentPrice);
+            coin.symbol,
+            coin.name,
+            coin.imageUrl,
+            coin.currentPrice,
+          );
         }).toList();
       });
     } catch (error) {
-      // Lida com possíveis erros na chamada da API
+      throw Exception('Error to load coins, erro: $error');
     }
   }
 
@@ -58,7 +56,7 @@ class _CoinsPageState extends State<CoinsPage> {
       ),
       body: Padding(
         padding: EdgeInsets.only(
-          top: deviceInfo.size.height * 0.05,
+          top: deviceInfo.size.height * 0.01,
           right: deviceInfo.size.height * 0.01,
           left: deviceInfo.size.height * 0.01,
         ),
