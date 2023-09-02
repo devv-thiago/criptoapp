@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login/components/pages/coins_page.dart';
+import 'package:login/components/views/coins_page.dart';
 
 class HomePage extends StatefulWidget {
   // ignore: use_key_in_widget_constructors

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login/components/widgets/coin_widget.dart'; // Importe o seu CoinWidget aqui
-import 'package:login/services/coin_provider.dart';
+import 'package:login/services/coin_repository.dart';
 
 class CoinsPage extends StatefulWidget {
   const CoinsPage({Key? key}) : super(key: key);
@@ -10,12 +10,9 @@ class CoinsPage extends StatefulWidget {
 }
 
 class _CoinsPageState extends State<CoinsPage> {
-  bool allClicked = false;
-  bool favoriteClicked = false;
-  CoinProvider coinProvider = CoinProvider();
-  List<Widget> coins = [];
-  List<Widget> filteredCoins =
-      []; // Lista de moedas filtradas pela barra de pesquisa
+  CoinRepository coinProvider = CoinRepository();
+  List<CoinWidget> coins = [];
+  List<CoinWidget> filteredCoins = [];
   TextEditingController searchController = TextEditingController();
 
   @override
@@ -33,8 +30,8 @@ class _CoinsPageState extends State<CoinsPage> {
           return CoinWidget(coin.symbol, coin.name, coin.imageUrl,
               coin.currentPrice, coin.priceChange);
         }).toList();
-        filteredCoins =
-            List.from(coins); // Inicialmente, exibimos todas as moedas
+        filteredCoins = List.from(coins);
+        // Inicialmente, exibimos todas as moedas
       });
     } catch (error) {
       throw Exception('Error to load coins, erro: $error');
@@ -45,7 +42,7 @@ class _CoinsPageState extends State<CoinsPage> {
     setState(() {
       filteredCoins = coins
           .where((coinWidget) =>
-              (coinWidget as CoinWidget)
+              (coinWidget)
                   .name
                   .toLowerCase()
                   .contains(searchTerm.toLowerCase()) ||
@@ -106,56 +103,6 @@ class _CoinsPageState extends State<CoinsPage> {
             width: deviceInfo.size.width,
             child: Column(
               children: [
-                Row(
-                  children: [
-                    ActionChip(
-                      onPressed: () {
-                        setState(() {
-                          allClicked = !allClicked;
-                        });
-                      },
-                      disabledColor: Colors.transparent,
-                      label: Text(
-                        'All',
-                        style: TextStyle(
-                          color: (allClicked == false)
-                              ? Colors.black
-                              : Colors.white,
-                        ),
-                      ),
-                      backgroundColor: (allClicked == false)
-                          ? Colors.transparent
-                          : const Color.fromRGBO(42, 68, 148, 1),
-                      side: const BorderSide(
-                        color: Color.fromRGBO(42, 68, 148, 1),
-                        width: 2,
-                      ),
-                    ),
-                    ActionChip(
-                      onPressed: () {
-                        setState(() {
-                          favoriteClicked = !favoriteClicked;
-                        });
-                      },
-                      disabledColor: Colors.transparent,
-                      backgroundColor: (favoriteClicked == false)
-                          ? Colors.transparent
-                          : const Color.fromRGBO(42, 68, 148, 1),
-                      label: Text(
-                        'Favorites',
-                        style: TextStyle(
-                          color: (favoriteClicked == false)
-                              ? Colors.black
-                              : Colors.white,
-                        ),
-                      ),
-                      side: const BorderSide(
-                        color: Color.fromRGBO(42, 68, 148, 1),
-                        width: 2,
-                      ),
-                    ),
-                  ],
-                ),
                 (filteredCoins.isEmpty)
                     ? Container(
                         height: deviceInfo.size.height * 0.3,
@@ -163,16 +110,15 @@ class _CoinsPageState extends State<CoinsPage> {
                         child: const CircularProgressIndicator())
                     : Expanded(
                         child: RefreshIndicator(
-                          onRefresh: _loadCoins,
-                          child: ListView.builder(
-                            itemBuilder: (context, index) {
-                              return filteredCoins[
-                                  index]; // Exibe o CoinWidget correspondente
-                            },
-                            itemCount: filteredCoins.length,
-                          ),
-                        ),
-                      ),
+                            onRefresh: _loadCoins,
+                            child: ListView.builder(
+                              itemBuilder: (context, index) {
+                                return filteredCoins[
+                                    index]; // Exibe o CoinWidget correspondente
+                              },
+                              itemCount: filteredCoins.length,
+                            )),
+                      )
               ],
             ),
           ),

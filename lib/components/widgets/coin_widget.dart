@@ -3,16 +3,14 @@ import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
 class CoinWidget extends StatefulWidget {
-  final String symbol;
-  final String name;
-  final String imageUrl;
-  final double currentPrice;
-  final double priceChange;
+  String symbol;
+  String name;
+  String imageUrl;
+  double currentPrice;
+  double priceChange;
 
-  const CoinWidget(this.symbol, this.name, this.imageUrl, this.currentPrice,
-      this.priceChange,
-      {Key? key})
-      : super(key: key);
+  CoinWidget(this.symbol, this.name, this.imageUrl, this.currentPrice,
+      this.priceChange);
 
   @override
   State<CoinWidget> createState() => _CoinWidgetState();
@@ -53,28 +51,31 @@ class _CoinWidgetState extends State<CoinWidget> {
                   ),
                 ),
               ),
-              SizedBox(
-                width: deviceinfo.size.width * 0.2,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      widget.symbol.toUpperCase(),
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+              Expanded(
+                flex: 1,
+                child: SizedBox(
+                  width: deviceinfo.size.width * 0.2,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        widget.symbol.toUpperCase(),
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Text(
-                      textAlign: TextAlign.center,
-                      widget.name,
-                      softWrap: true,
-                      style: const TextStyle(
-                        color: Color.fromARGB(255, 71, 71, 71),
-                        fontWeight: FontWeight.bold,
+                      Text(
+                        textAlign: TextAlign.center,
+                        widget.name,
+                        softWrap: true,
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 71, 71, 71),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Expanded(
@@ -90,13 +91,14 @@ class _CoinWidgetState extends State<CoinWidget> {
                     textAlign: TextAlign.center,
                   )),
               Expanded(
-                flex: 1,
+                flex: 2,
                 child: Text(
                   currencyFormat.format(widget.currentPrice).toString(),
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ],
