@@ -4,6 +4,7 @@
 Este é um projeto de aplicativo de criptomoedas desenvolvido com o objetivo de aprimorar as habilidades de consumo de API em uma aplicação robusta. O aplicativo utiliza a API da CoinGecko para obter informações atualizadas sobre criptomoedas e exibi-las de forma amigável aos usuários. Além disso, o backend do aplicativo é suportado pelo Firebase, uma plataforma de desenvolvimento de aplicativos móveis do Google.
 
 ## Funcionalidades Principais
+- **Acompanhamento de Preços:** Os usuários podem visualizar informações em tempo real sobre os preços, gráficos de histórico e dados de mercado de uma ampla gama de criptomoedas.
 
 ## Instalação 
 
