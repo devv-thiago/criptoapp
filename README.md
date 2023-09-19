@@ -1,16 +1,13 @@
-# login
+# Aplicativo de Criptomoedas
+![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white) ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
 
-A new Flutter project.
+Este é um projeto de aplicativo de criptomoedas desenvolvido com o objetivo de aprimorar as habilidades de consumo de API em uma aplicação robusta. O aplicativo utiliza a API da CoinGecko para obter informações atualizadas sobre criptomoedas e exibi-las de forma amigável aos usuários. Além disso, o backend do aplicativo é suportado pelo Firebase, uma plataforma de desenvolvimento de aplicativos móveis do Google.
 
-## Getting Started
+## Funcionalidades Principais
 
-This project is a starting point for a Flutter application.
+## Instalação 
 
-A few resources to get you started if this is your first Flutter project:
+## Licença
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Contribuições
+Contribuições são bem-vindas! Se você deseja contribuir para este projeto, siga as diretrizes de contribuição e envie suas solicitações de pull. Se você encontrar problemas ou bugs, abra uma issue para que possamos trabalhar juntos na resolução.
