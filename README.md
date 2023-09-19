@@ -5,6 +5,7 @@ Este é um projeto de aplicativo de criptomoedas desenvolvido com o objetivo de 
 
 ## Funcionalidades Principais
 - **Acompanhamento de Preços:** Os usuários podem visualizar informações em tempo real sobre os preços, gráficos de histórico e dados de mercado de uma ampla gama de criptomoedas.
+- **Pesquisa de Criptomoedas:** Os usuários podem pesquisar por nome as Criptomoedas que lhes interessam. 
 
 ## Instalação 
 
