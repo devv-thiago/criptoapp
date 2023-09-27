@@ -16,7 +16,7 @@ Este é um projeto de aplicativo de criptomoedas desenvolvido com o objetivo de 
 ## Instalação 
 ### Para desenvolvedores
 #### 1. Preparando o Ambiente para o Flutter e Dart
-Para executar este projeto, você precisará configurar o ambiente de desenvolvimento Flutter e Dart em sua máquina. Siga estas etapas para preparar seu ambiente, siga os passos contidos dentro do site oficial do Flutter para realizar as devidas instalações depende do seu sistema operacional, site: [Site oficial Flutter](https://docs.flutter.dev/get-started/install).
+Para executar este projeto, você precisará configurar o ambiente de desenvolvimento Flutter e Dart em sua máquina. Siga estas etapas para preparar seu ambiente, siga os passos contidos dentro do site oficial do Flutter para realizar as devidas instalações em seu sistema operacional, site: [Site oficial Flutter](https://docs.flutter.dev/get-started/install).
 
 Após concluir essas etapas, você terá um ambiente de desenvolvimento Flutter e Dart configurado em sua máquina. Agora você está pronto para executar o projeto. Certifique-se de seguir as instruções específicas do seu sistema operacional para garantir uma instalação adequada do Flutter e Dart.
 
